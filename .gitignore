@@ -1,0 +1,18 @@
+# maven ignore
+target/
+classes/
+
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+logs/
