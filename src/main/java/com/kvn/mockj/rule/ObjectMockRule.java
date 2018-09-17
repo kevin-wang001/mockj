@@ -59,7 +59,7 @@ public class ObjectMockRule extends AbstactMockRule {
         }
         int min = Integer.valueOf(strs[0]);
         int max = Integer.valueOf(strs[1]);
-        return generate(new Random().nextInt(max - min) + min, JSON.parseObject(baseValue));
+        return generate(new Random().nextInt(max - min + 1) + min, JSON.parseObject(baseValue));
     }
 
     /**
@@ -68,7 +68,7 @@ public class ObjectMockRule extends AbstactMockRule {
      * @param base
      * @return
      */
-    private String generate(Integer count, JSONObject base) {
+    private JSONObject generate(Integer count, JSONObject base) {
         JSONObject rlt = new JSONObject();
         Random random = new Random();
         ArrayList<String> keyList = new ArrayList<>(base.keySet());
@@ -77,7 +77,7 @@ public class ObjectMockRule extends AbstactMockRule {
             String key = keyList.get(index);
             rlt.put(key, base.get(key));
         }
-        return rlt.toJSONString();
+        return rlt;
     }
 
 }

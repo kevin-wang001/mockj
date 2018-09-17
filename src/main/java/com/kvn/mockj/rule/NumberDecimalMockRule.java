@@ -75,7 +75,7 @@ public class NumberDecimalMockRule extends AbstactMockRule {
 
         int min = Integer.valueOf(range[0]);
         int max = Integer.valueOf(range[1]);
-        return new Random().nextInt(max - min) + min;
+        return RANDOM.nextInt(max - min + 1) + min;
     }
 
 }

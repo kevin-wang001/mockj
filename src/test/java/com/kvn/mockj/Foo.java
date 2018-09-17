@@ -1,18 +1,22 @@
 package com.kvn.mockj;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by wangzhiyuan on 2018/9/12
  */
 @Data
 public class Foo {
+    // String 类型
     private String name;
+
+    // char 类型
+    private char flag;
 
     // 数字类型
     private int age;
@@ -28,32 +32,26 @@ public class Foo {
 
     // collection 类型
     private List<String> courses;
+    private Set<String> courses2;
+
+    // map 类型
+    private Map<String, String> map;
 
 
     public static String useTemplate(){
         return "{" +
                 "\"name|1-10\": \"★\"," +
+                "\"flag\": \"$char\"," +
                 "\"age|1-100\": 100," +
                 "\"next|+1\": 100," +
                 "\"point|1-100.1-2\": 100," +
                 "\"boy|@random\": true," +
                 "\"startDate\": \"$date\"," +
                 "\"endDate\": \"$date(yyyy-MM-dd)\"," +
-                "\"courses|2\": [\"语文\",\"数学\",\"英语\"]" +
+                "\"courses|2\": [\"语文\",\"数学\",\"英语\"]," +
+                "\"courses2|1-2\": [\"语文\",\"数学\",\"英语\"]," +
+                "\"map|2-4\": {\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}" +
                 "}";
     }
 
-    public static void main(String[] args) {
-        Foo foo = new Foo();
-        foo.setAge(12);
-        ArrayList<String> courses = new ArrayList<>();
-        courses.add("语文");
-        courses.add("数学");
-        foo.setCourses(courses);
-        String json = JSON.toJSONString(foo);
-        String mock = Mock.mock(useTemplate());
-        System.out.println(json);
-        Foo foo1 = JSON.parseObject(json, Foo.class);
-        System.out.println(foo1);
-    }
 }

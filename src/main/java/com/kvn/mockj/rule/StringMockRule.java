@@ -5,7 +5,7 @@ import com.kvn.mockj.MockField;
 import java.util.Random;
 
 /**
- * 按区间范围规则生成 mock 数据。形如 "number|1-10":"1"
+ * 按区间范围规则生成 mock 数据。形如 "string|1-10":"★"
  * Created by wangzhiyuan on 2018/9/14
  */
 public class StringMockRule extends AbstactMockRule {
@@ -21,7 +21,7 @@ public class StringMockRule extends AbstactMockRule {
      */
     public static boolean match(MockField mockField) {
         boolean typeMatch = String.class == mockField.getBaseValueType();
-        return typeMatch && AbstactMockRule.isRangePattern(mockField.getRuleStr());
+        return typeMatch && isRangePattern(mockField.getRuleStr());
     }
 
 
@@ -36,7 +36,7 @@ public class StringMockRule extends AbstactMockRule {
         }
         int min = Integer.valueOf(strs[0]);
         int max = Integer.valueOf(strs[1]);
-        return generate(new Random().nextInt(max - min) + min, baseValue);
+        return generate(new Random().nextInt(max - min + 1) + min, baseValue);
     }
 
     /**

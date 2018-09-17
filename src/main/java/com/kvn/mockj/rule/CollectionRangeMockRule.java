@@ -40,7 +40,7 @@ public class CollectionRangeMockRule extends AbstactMockRule {
         int min = Math.min(Integer.valueOf(strs[0]), jsonArray.size());
         int max = Math.min(Integer.valueOf(strs[1]), jsonArray.size());
         // 生成区间内的数字
-        return generate(new Random().nextInt(max - min) + min, jsonArray);
+        return generate(RANDOM.nextInt(max - min + 1) + min, jsonArray);
     }
 
     /**

@@ -18,7 +18,7 @@ public class RandomMockRule extends AbstactMockRule {
      * @return
      */
     public static boolean match(MockField mockField) {
-        return "@random".equals(mockField.getBaseValue()) && isSupportRandom(mockField.getBaseValueType());
+        return "@random".equals(mockField.getRuleStr()) && isSupportRandom(mockField.getBaseValueType());
     }
 
     /**

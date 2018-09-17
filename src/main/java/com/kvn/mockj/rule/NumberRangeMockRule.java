@@ -38,7 +38,7 @@ public class NumberRangeMockRule extends AbstactMockRule {
         int min = Integer.valueOf(strs[0]);
         int max = Integer.valueOf(strs[1]);
         // 生成区间内的数字
-        return new Random().nextInt(max - min) + min;
+        return RANDOM.nextInt(max - min + 1) + min;
     }
 
 }
