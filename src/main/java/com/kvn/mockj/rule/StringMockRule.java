@@ -28,7 +28,7 @@ public class StringMockRule extends AbstactMockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         String baseValue = this.mockField.getBaseValue();
         String[] strs = this.mockField.getRuleStr().split("-");
         if (strs.length == 1) {

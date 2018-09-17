@@ -28,7 +28,7 @@ public class SpecialMockRule extends AbstactMockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         String methodName = null;
         String paramStr = null;
 
@@ -46,7 +46,7 @@ public class SpecialMockRule extends AbstactMockRule {
             paramStr = group2 == null ? null : group2.substring(1, group2.length() - 1);
         }
         try {
-            return (String) $Function.class.getMethod(methodName, String.class).invoke(null, paramStr);
+            return $Function.class.getMethod(methodName, String.class).invoke(null, paramStr);
         } catch (NoSuchMethodException e) {
             throw new RuntimeException("$Function 中不存在方法" + methodName, e);
         } catch (Exception e) {

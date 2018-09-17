@@ -77,10 +77,8 @@ public class MockField {
         }
 
         // 2. boolean
-        try {
-            Boolean.valueOf(baseValue);
+        if ("true".equals(baseValue) || "false".equals(baseValue)) {
             return boolean.class;
-        } catch (Exception e) {
         }
 
         // 3. 集合类型
@@ -101,7 +99,7 @@ public class MockField {
         return String.class;
     }
 
-    public String generateMockData() {
+    public Object generateMockData() {
         return this.mockRule.generateMockData();
     }
 

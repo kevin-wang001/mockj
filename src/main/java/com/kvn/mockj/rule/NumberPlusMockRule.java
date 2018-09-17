@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
  * 在 baseValue 的基础上每次增加固定的值。形如："number|+1":201
  * Created by wangzhiyuan on 2018/9/14
  */
-public class PlusNumberMockRule extends AbstactMockRule implements MockRule {
+public class NumberPlusMockRule extends AbstactMockRule implements MockRule {
     private static final Pattern pattern = Pattern.compile("[+-]\\d{1,}");
 
-    public PlusNumberMockRule(MockField mockField) {
+    public NumberPlusMockRule(MockField mockField) {
         super(mockField);
     }
 
@@ -28,7 +28,7 @@ public class PlusNumberMockRule extends AbstactMockRule implements MockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         Integer plus = Integer.valueOf(this.mockField.getRuleStr());
         Integer lastValue = MockDataContext.getHistory().get(mockField) == null ? null : Integer.valueOf(MockDataContext.getHistory().get(mockField).toString());
         if (lastValue == null) {
@@ -36,7 +36,7 @@ public class PlusNumberMockRule extends AbstactMockRule implements MockRule {
         }
         lastValue += plus;
         MockDataContext.getHistory().put(this.mockField, lastValue);
-        return lastValue.toString();
+        return lastValue;
     }
 
 }

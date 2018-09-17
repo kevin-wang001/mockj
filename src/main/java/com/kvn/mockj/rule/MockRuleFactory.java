@@ -18,10 +18,12 @@ public class MockRuleFactory {
      */
     static {
         RULE_LIST.add(BooleanMockRule.class);
-        RULE_LIST.add(DecimalNumberMockRule.class);
-        RULE_LIST.add(IntegerNumberMockRule.class);
+        RULE_LIST.add(CollectionPlusMockRule.class);
+        RULE_LIST.add(CollectionRangeMockRule.class);
+        RULE_LIST.add(NumberDecimalMockRule.class);
+        RULE_LIST.add(NumberRangeMockRule.class);
+        RULE_LIST.add(NumberPlusMockRule.class);
         RULE_LIST.add(ObjectMockRule.class);
-        RULE_LIST.add(PlusNumberMockRule.class);
         RULE_LIST.add(RandomMockRule.class);
         RULE_LIST.add(StringMockRule.class);
     }

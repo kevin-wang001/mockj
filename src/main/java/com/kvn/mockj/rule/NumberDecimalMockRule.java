@@ -11,11 +11,11 @@ import java.util.regex.Pattern;
  * 整数部分1-100表示的是整数位的范围是1-100的数字，小数部分1-10，表示的是小数位的位数是1-10位小数
  * Created by wangzhiyuan on 2018/9/14
  */
-public class DecimalNumberMockRule extends AbstactMockRule {
+public class NumberDecimalMockRule extends AbstactMockRule {
 
     private static final Pattern pattern = Pattern.compile("\\d{1,}(-\\d{1,})\\.\\d{1,}(-\\d{1,})");
 
-    public DecimalNumberMockRule(MockField mockField) {
+    public NumberDecimalMockRule(MockField mockField) {
         super(mockField);
     }
 
@@ -31,7 +31,7 @@ public class DecimalNumberMockRule extends AbstactMockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         String[] splits = this.mockField.getRuleStr().split("\\.");
         String[] integerRange = splits[0].split("-");
         // 整数位

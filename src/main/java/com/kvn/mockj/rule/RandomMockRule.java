@@ -45,7 +45,7 @@ public class RandomMockRule extends AbstactMockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         int numberLength = 100000; // 数字保留5位
 
         if (String.class == mockField.getBaseValueType()) {

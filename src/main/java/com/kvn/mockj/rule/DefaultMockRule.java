@@ -22,7 +22,7 @@ public class DefaultMockRule extends AbstactMockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         return this.mockField.getBaseValue();
     }
 

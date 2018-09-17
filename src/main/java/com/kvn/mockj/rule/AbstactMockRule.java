@@ -20,7 +20,7 @@ public abstract class AbstactMockRule implements MockRule {
     }
 
     @Override
-    public final String generateMockData() {
+    public final Object generateMockData() {
         return doGenerate();
     }
 
@@ -31,7 +31,7 @@ public abstract class AbstactMockRule implements MockRule {
      * 生成 mock 数据
      * @return
      */
-    protected abstract String doGenerate();
+    protected abstract Object doGenerate();
 
     private static final Pattern pattern = Pattern.compile("\\d{1,}(-\\d{1,})?");
 

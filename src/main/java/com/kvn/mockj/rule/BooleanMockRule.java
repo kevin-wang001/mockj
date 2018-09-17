@@ -24,7 +24,7 @@ public class BooleanMockRule extends AbstactMockRule {
 
 
     @Override
-    public String doGenerate() {
+    public Object doGenerate() {
         if ("@random".equals(mockField.getRuleStr().toLowerCase())) {
             return Boolean.valueOf(RANDOM.nextBoolean()).toString();
         }

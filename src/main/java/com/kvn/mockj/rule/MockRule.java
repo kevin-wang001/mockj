@@ -8,5 +8,5 @@ public interface MockRule {
     /**
      * 生成 mock 数据
      */
-    String generateMockData();
+    Object generateMockData();
 }
