@@ -30,7 +30,7 @@ public class PlusNumberMockRule extends AbstactMockRule implements MockRule {
     @Override
     public String doGenerate() {
         Integer plus = Integer.valueOf(this.mockField.getRuleStr());
-        Integer lastValue = Integer.valueOf(MockDataContext.getHistory().get(mockField).toString());
+        Integer lastValue = MockDataContext.getHistory().get(mockField) == null ? null : Integer.valueOf(MockDataContext.getHistory().get(mockField).toString());
         if (lastValue == null) {
             lastValue = Integer.valueOf(this.mockField.getBaseValue());
         }

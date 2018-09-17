@@ -33,14 +33,17 @@ public class SpecialMockRule extends AbstactMockRule {
         String paramStr = null;
 
         Matcher matcher = pattern.matcher(mockField.getBaseValue());
+        boolean found = matcher.find();
+        if (!found) {
+            throw new RuntimeException(mockField.getBaseValue() + "错误，匹配不到函数名");
+        }
         int groupCount = matcher.groupCount();
-
         if (groupCount == 1) {
             methodName = matcher.group(1);
         } else if (groupCount == 2) {
             methodName = matcher.group(1);
             String group2 = matcher.group(2);
-            paramStr = group2.substring(1, group2.length() - 1);
+            paramStr = group2 == null ? null : group2.substring(1, group2.length() - 1);
         }
         try {
             return (String) $Function.class.getMethod(methodName, String.class).invoke(null, paramStr);
