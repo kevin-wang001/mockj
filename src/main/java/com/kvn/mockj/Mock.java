@@ -16,7 +16,7 @@ public class Mock {
         JSONObject result = new JSONObject();
         JSONObject json = JSON.parseObject(template);
         json.forEach((k, v) -> {
-            MockField mockField = MockField.parse(k, v.toString());
+            MockField mockField = MockField.parse(template, k, v.toString());
             result.put(mockField.getName(), mockField.generateMockData());
         });
         return result.toJSONString();
