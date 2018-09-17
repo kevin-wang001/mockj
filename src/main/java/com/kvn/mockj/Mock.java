@@ -36,9 +36,11 @@ public class Mock {
         String template = "{" +
                 "\"name|1-10\": \"★\"," +
                 "\"age|1-100\": 100," +
-                "\"boy|1\": true" +
+                "\"boy|@random\": true" +
                 "}";
-        Foo foo = Mock.mock(template, Foo.class);
-        System.out.println(JSON.toJSONString(foo));
+        for (int i = 0; i < 5; i++) {
+            Foo foo = Mock.mock(template, Foo.class);
+            System.out.println(JSON.toJSONString(foo));
+        }
     }
 }

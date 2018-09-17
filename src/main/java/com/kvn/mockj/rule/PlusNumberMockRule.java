@@ -28,7 +28,7 @@ public class PlusNumberMockRule extends AbstactMockRule implements MockRule {
 
 
     @Override
-    public String generateMockData() {
+    public String doGenerate() {
         Integer plus = Integer.valueOf(this.mockField.getRuleStr());
         Integer lastValue = Integer.valueOf(MockDataContext.getHistory().get(mockField).toString());
         if (lastValue == null) {

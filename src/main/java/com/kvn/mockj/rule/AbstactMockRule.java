@@ -1,18 +1,37 @@
 package com.kvn.mockj.rule;
 
 import com.kvn.mockj.MockField;
+import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
  * Created by wangzhiyuan on 2018/9/13
  */
 public abstract class AbstactMockRule implements MockRule {
+    protected static final Random RANDOM = new Random();
+    protected static final RandomStringUtils STRING_RANDOM = new RandomStringUtils();
+
     protected MockField mockField;
 
     public AbstactMockRule(MockField mockField) {
         this.mockField = mockField;
     }
+
+    @Override
+    public final String generateMockData() {
+        return doGenerate();
+    }
+
+
+
+
+    /**
+     * 生成 mock 数据
+     * @return
+     */
+    protected abstract String doGenerate();
 
     private static final Pattern pattern = Pattern.compile("\\d{1,}(-\\d{1,})?");
 

@@ -14,15 +14,24 @@ public class MockRuleFactory {
     private static final List<Class<? extends AbstactMockRule>> RULE_LIST = new ArrayList<>();
 
     /**
-     * 注册规则
+     * 注册规则。DefaultMockRule、SpecialMockRule 不注册到 RULE_LIST 中
      */
     static {
+        RULE_LIST.add(BooleanMockRule.class);
         RULE_LIST.add(DecimalNumberMockRule.class);
-        RULE_LIST.add(PlusNumberMockRule.class);
         RULE_LIST.add(IntegerNumberMockRule.class);
+        RULE_LIST.add(ObjectMockRule.class);
+        RULE_LIST.add(PlusNumberMockRule.class);
+        RULE_LIST.add(RandomMockRule.class);
+        RULE_LIST.add(StringMockRule.class);
     }
 
     public static MockRule find(MockField mockField) {
+        // baseValue 以 @ 开头，则使用 SpecialMockRule
+        if (mockField.getBaseValue().startsWith("@")) {
+            return new SpecialMockRule(mockField);
+        }
+
         for (Class<? extends AbstactMockRule> ruleClass : RULE_LIST) {
             try {
                 Method matchMethod = ruleClass.getMethod("match", MockField.class);

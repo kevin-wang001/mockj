@@ -31,7 +31,7 @@ public class DecimalNumberMockRule extends AbstactMockRule {
 
 
     @Override
-    public String generateMockData() {
+    public String doGenerate() {
         String[] splits = this.mockField.getRuleStr().split("\\.");
         String[] integerRange = splits[0].split("-");
         // 整数位

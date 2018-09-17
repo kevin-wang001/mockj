@@ -2,10 +2,8 @@ package com.kvn.mockj.rule;
 
 import com.kvn.mockj.MockField;
 
-import java.util.Random;
-
 /**
- * 对 boolean 类型的数据做随机mock。形如："boolean|BOOLEAN":true<br/>
+ * 对 boolean 类型的数据做随机mock。形如："boolean|1":true<br/>
  * Created by wangzhiyuan on 2018/9/14
  */
 public class BooleanMockRule extends AbstactMockRule {
@@ -26,10 +24,9 @@ public class BooleanMockRule extends AbstactMockRule {
 
 
     @Override
-    public String generateMockData() {
-        if ("@random".equals(this.mockField.getRuleStr())) {
-            int data = new Random().nextInt(1);
-            return String.valueOf(data == 1);
+    public String doGenerate() {
+        if ("@random".equals(mockField.getRuleStr().toLowerCase())) {
+            return Boolean.valueOf(RANDOM.nextBoolean()).toString();
         }
         return this.mockField.getBaseValue();
     }

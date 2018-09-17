@@ -3,11 +3,12 @@ package com.kvn.mockj.rule;
 import com.kvn.mockj.MockField;
 
 /**
+ * 特殊的 MockRule。baseValue 以 @ 开头的都认定为使用 SpecialMockRule
  * Created by wangzhiyuan on 2018/9/14
  */
-public class DefaultMockRule extends AbstactMockRule {
+public class SpecialMockRule extends AbstactMockRule {
 
-    public DefaultMockRule(MockField mockField) {
+    public SpecialMockRule(MockField mockField) {
         super(mockField);
     }
 
