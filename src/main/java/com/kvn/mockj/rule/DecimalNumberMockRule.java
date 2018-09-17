@@ -39,7 +39,7 @@ public class DecimalNumberMockRule extends AbstactMockRule {
         // 小数位
         int decimalPlace = 0;
         if (splits.length == 2) {
-            String[] decimalFigures = splits[0].split("-");
+            String[] decimalFigures = splits[1].split("-");
             decimalPlace = generateNumByFigure(decimalFigures);
         }
         return new BigDecimal(integerPlace + "." + decimalPlace).toString();
@@ -54,9 +54,9 @@ public class DecimalNumberMockRule extends AbstactMockRule {
         int base = (int) Math.pow(10, Integer.valueOf(figures[0]));
         int max = 0;
         if (figures.length == 1) {
-            max = (int) Math.pow(10, Integer.valueOf(figures[0]) + 1);
+            max = (int) Math.pow(10, Integer.valueOf(figures[0]));
         } else {
-            max = (int) Math.pow(10, Integer.valueOf(figures[1]) + 1);
+            max = (int) Math.pow(10, Integer.valueOf(figures[1]));
         }
 
         return (int) (Math.random() * (max - base)) + base;

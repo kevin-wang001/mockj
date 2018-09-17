@@ -31,16 +31,4 @@ public class Mock {
         return JSON.parseObject(mock(template), rtnClass);
     }
 
-
-    public static void main(String[] args) {
-        String template = "{" +
-                "\"name|1-10\": \"★\"," +
-                "\"age|1-100\": 100," +
-                "\"boy|@random\": true" +
-                "}";
-        for (int i = 0; i < 5; i++) {
-            Foo foo = Mock.mock(template, Foo.class);
-            System.out.println(JSON.toJSONString(foo));
-        }
-    }
 }

@@ -27,8 +27,8 @@ public class MockRuleFactory {
     }
 
     public static MockRule find(MockField mockField) {
-        // baseValue 以 @ 开头，则使用 SpecialMockRule
-        if (mockField.getBaseValue().startsWith("@")) {
+        // baseValue 以 $ 开头，则使用 SpecialMockRule
+        if (mockField.getBaseValue().startsWith("$")) {
             return new SpecialMockRule(mockField);
         }
 

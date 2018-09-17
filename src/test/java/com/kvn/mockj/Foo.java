@@ -9,6 +9,7 @@ import lombok.Data;
 public class Foo {
     private String name;
     private int age;
+    private Double point;
     private boolean boy;
 
 }
