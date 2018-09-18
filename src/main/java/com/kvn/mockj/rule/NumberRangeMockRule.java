@@ -2,8 +2,6 @@ package com.kvn.mockj.rule;
 
 import com.kvn.mockj.MockField;
 
-import java.util.Random;
-
 /**
  * 按区间范围规则生成 mock 数据。形如 "number|1-10":"1"
  * Created by wangzhiyuan on 2018/9/14
@@ -21,7 +19,7 @@ public class NumberRangeMockRule extends AbstactMockRule {
      */
     public static boolean match(MockField mockField) {
         boolean typeMatch = int.class == mockField.getBaseValueType() || Number.class.isAssignableFrom(mockField.getBaseValueType());
-        return typeMatch && AbstactMockRule.isRangePattern(mockField.getRuleStr());
+        return typeMatch && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
     }
 
 

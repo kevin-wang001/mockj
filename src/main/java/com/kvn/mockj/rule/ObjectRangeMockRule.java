@@ -33,20 +33,20 @@ import java.util.Set;
  * </pre>
  * Created by wangzhiyuan on 2018/9/14
  */
-public class ObjectMockRule extends AbstactMockRule {
+public class ObjectRangeMockRule extends AbstactMockRule {
 
-    public ObjectMockRule(MockField mockField) {
+    public ObjectRangeMockRule(MockField mockField) {
         super(mockField);
     }
 
     /**
-     * 是否适用本规则。只要类型是 boolean，就按 BooleanMockRule 来处理
+     * 是否适用本规则。
      * @param mockField 需要 mock 的属性
      * @return
      */
     public static boolean match(MockField mockField) {
         boolean typeMatch = Object.class == mockField.getBaseValueType();
-        return typeMatch && AbstactMockRule.isRangePattern(mockField.getRuleStr());
+        return typeMatch && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
     }
 
 

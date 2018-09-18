@@ -32,9 +32,8 @@ public class CollectionPlusMockRule extends AbstactMockRule {
      * @return
      */
     public static boolean match(MockField mockField) {
-        return Collection.class == mockField.getBaseValueType() && pattern.matcher(mockField.getRuleStr()).matches();
+        return Collection.class == mockField.getBaseValueType() && mockField.getRuleStr() != null && pattern.matcher(mockField.getRuleStr()).matches();
     }
-
 
     @Override
     public Object doGenerate() {

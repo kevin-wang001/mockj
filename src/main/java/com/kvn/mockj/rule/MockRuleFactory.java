@@ -3,15 +3,15 @@ package com.kvn.mockj.rule;
 import com.kvn.mockj.MockField;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by wangzhiyuan on 2018/9/13
  */
 public class MockRuleFactory {
 
-    private static final List<Class<? extends AbstactMockRule>> RULE_LIST = new ArrayList<>();
+    private static final Set<Class<? extends AbstactMockRule>> RULE_LIST = new HashSet<>();
 
     /**
      * 注册规则。DefaultMockRule、SpecialMockRule 不注册到 RULE_LIST 中
@@ -23,7 +23,8 @@ public class MockRuleFactory {
         RULE_LIST.add(NumberDecimalMockRule.class);
         RULE_LIST.add(NumberRangeMockRule.class);
         RULE_LIST.add(NumberPlusMockRule.class);
-        RULE_LIST.add(ObjectMockRule.class);
+        RULE_LIST.add(ObjectRangeMockRule.class);
+        RULE_LIST.add(ObjectInArrayMockRule.class);
         RULE_LIST.add(RandomMockRule.class);
         RULE_LIST.add(StringMockRule.class);
     }

@@ -26,7 +26,7 @@ public class NumberDecimalMockRule extends AbstactMockRule {
      */
     public static boolean match(MockField mockField) {
         boolean typeMatch = int.class == mockField.getBaseValueType() || Number.class.isAssignableFrom(mockField.getBaseValueType());
-        return typeMatch && pattern.matcher(mockField.getRuleStr()).matches();
+        return typeMatch && mockField.getRuleStr() != null &&  pattern.matcher(mockField.getRuleStr()).matches();
     }
 
 

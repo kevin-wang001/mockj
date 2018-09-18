@@ -23,7 +23,7 @@ public class CollectionRangeMockRule extends AbstactMockRule {
      * @return
      */
     public static boolean match(MockField mockField) {
-        return Collection.class == mockField.getBaseValueType() && isRangePattern(mockField.getRuleStr());
+        return Collection.class == mockField.getBaseValueType() && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
     }
 
 

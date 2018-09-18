@@ -21,7 +21,7 @@ public class StringMockRule extends AbstactMockRule {
      */
     public static boolean match(MockField mockField) {
         boolean typeMatch = String.class == mockField.getBaseValueType();
-        return typeMatch && isRangePattern(mockField.getRuleStr());
+        return typeMatch && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
     }
 
 

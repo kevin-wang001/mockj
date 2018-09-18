@@ -37,6 +37,11 @@ public class Foo {
     // map 类型
     private Map<String, String> map;
 
+    // Object 类型
+    private Foo foo;
+
+    private Foo foo1;
+
 
     public static String useTemplate(){
         return "{" +
