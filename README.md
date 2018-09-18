@@ -48,7 +48,7 @@ value 值以 $ 开头，则会路由到 $Function.java 中，调用 $Function.ja
 
 #### 例子
 [MockTest.java](/src/test/java/com/kvn/mockj/MockTest.java)  
-手写模板：
+* **手写模板：** 
 ```java
 String template = "{" +
                   "\"name|1-10\": \"★\"," +
@@ -66,12 +66,12 @@ String template = "{" +
 Foo foo = Mock.mock(template, Foo.class);
 ```
 
-使用随机模板1：
+* **使用随机模板1：**
 ```java
 Foo mock = Mock.mock(TemplateHelper.randomTemplate(Foo.class), Foo.class);
 ```
 
-使用随机模板2：  
+* **使用随机模板2：**  
 随机模板只支持对 string、number、date等数据类型进行mock，所以其他的复杂对象类型的mock，需要手动添加mock模板。mockj提供了相应的api进行操作  
 ```java
 TemplateHelper helper = TemplateHelper.random(Foo.class);
