@@ -1,11 +1,11 @@
 # mockj
 
 #### 项目介绍
-mockjs的java实现。同时内置随机 random 一个对象的功能
+生成mock数据的利器，mockjs的java实现。同时内置随机 random 一个对象的功能
 
 
 #### 使用说明
-**配置规则:**
+配置规则:  
 >   属性名|生成规则:属性值  
 
 * 1 属性值： string  
@@ -77,9 +77,7 @@ TemplateHelper helper = TemplateHelper.random(Foo.class);
 helper.put("courses|2", new JSONArray(Lists.newArrayList("语文","数学","英语")));
 helper.put("courses2|1-2", new JSONArray(Lists.newArrayList("语文","数学","英语")));
 helper.put("map|2-4", JSONObject.parseObject("{\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}"));
-// ==> OneInArrayMockRule
 helper.put("foo|1", JSONArray.parseArray("[{\"name\":\"zhangsan\",\"age\":12},{\"name\":\"lisi\",\"age\":10},{\"name\":\"wangwu\",\"age\":8}]"));
-// ==> DefaultMockRule
 helper.put("foo1", JSONArray.parseObject("{\"name\":\"wangwu\",\"age\":8}"));
 Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
 ```

@@ -20,7 +20,7 @@ public class MockTest {
         helper.put("courses|2", new JSONArray(Lists.newArrayList("语文", "数学", "英语")));
         helper.put("courses2|1-2", new JSONArray(Lists.newArrayList("语文", "数学", "英语")));
         helper.put("map|2-4", JSONObject.parseObject("{\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}"));
-        // ==> OneInArrayMockRule
+        // ==> CollectionRangeMockRule
         helper.put("foo|1", JSONArray.parseArray("[{\"name\":\"zhangsan\",\"age\":12},{\"name\":\"lisi\",\"age\":10},{\"name\":\"wangwu\",\"age\":8}]"));
         // ==> DefaultMockRule
         helper.put("foo1", JSONArray.parseObject("{\"name\":\"wangwu\",\"age\":8}"));
