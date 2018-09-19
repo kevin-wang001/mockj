@@ -49,9 +49,7 @@ public class CollectionPlusMockRule extends AbstactMockRule {
         }
 
         MockDataContext.getHistory().put(mockField, next);
-        JSONArray rtn = new JSONArray();
-        rtn.add(jsonArray.get(nextInCache));
-        return rtn;
+        return jsonArray.get(nextInCache);
     }
 
 }

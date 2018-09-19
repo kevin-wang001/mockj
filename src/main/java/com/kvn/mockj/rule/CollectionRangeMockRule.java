@@ -5,10 +5,27 @@ import com.alibaba.fastjson.JSONArray;
 import com.kvn.mockj.MockField;
 
 import java.util.Collection;
-import java.util.Random;
 
 /**
- * 为集合（数组）类型的模板生成 mock 数据
+ * 为集合（数组）类型的模板生成 mock 数据。
+ * <pre>
+ * 形如：'object|n1-n2': array
+ * "foo|1-3":[
+ *         {
+ *             "name":"zhangsan",
+ *             "age":12
+ *         },
+ *         {
+ *             "name":"lisi",
+ *             "age":10
+ *         },
+ *         {
+ *             "name":"wangwu",
+ *             "age":8
+ *         }
+ *     ]
+ * </pre>
+ * 特别的，如果 rule 的值为1的话（如："object|1: array"），就会返回 array 其中的一个元素，且类型与元素类型相同。否则，返回的都是数组类型
  * Created by wangzhiyuan on 2018/9/14
  */
 public class CollectionRangeMockRule extends AbstactMockRule {
@@ -49,13 +66,13 @@ public class CollectionRangeMockRule extends AbstactMockRule {
      * @param jsonArray
      * @return
      */
-    private JSONArray generate(Integer count, JSONArray jsonArray) {
+    private Object generate(Integer count, JSONArray jsonArray) {
         JSONArray rtn = new JSONArray();
         for (int i = 0; i < count; i++) {
             int index = RANDOM.nextInt(jsonArray.size());
             rtn.add(jsonArray.get(index));
         }
-        return rtn;
+        return "1".equals(this.mockField.getRuleStr()) ? rtn.get(0) : rtn;
     }
 
 }

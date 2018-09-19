@@ -24,7 +24,6 @@ public class MockRuleFactory {
         RULE_LIST.add(NumberRangeMockRule.class);
         RULE_LIST.add(NumberPlusMockRule.class);
         RULE_LIST.add(ObjectRangeMockRule.class);
-        RULE_LIST.add(OneInArrayMockRule.class);
         RULE_LIST.add(RandomMockRule.class);
         RULE_LIST.add(StringMockRule.class);
     }

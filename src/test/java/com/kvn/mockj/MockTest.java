@@ -21,7 +21,7 @@ public class MockTest {
         helper.put("courses2|1-2", new JSONArray(Lists.newArrayList("语文", "数学", "英语")));
         helper.put("map|2-4", JSONObject.parseObject("{\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}"));
         // ==> OneInArrayMockRule
-        helper.put("foo|@one", JSONArray.parseArray("[{\"name\":\"zhangsan\",\"age\":12},{\"name\":\"lisi\",\"age\":10},{\"name\":\"wangwu\",\"age\":8}]"));
+        helper.put("foo|1", JSONArray.parseArray("[{\"name\":\"zhangsan\",\"age\":12},{\"name\":\"lisi\",\"age\":10},{\"name\":\"wangwu\",\"age\":8}]"));
         // ==> DefaultMockRule
         helper.put("foo1", JSONArray.parseObject("{\"name\":\"wangwu\",\"age\":8}"));
         System.out.println(helper);
@@ -38,11 +38,9 @@ public class MockTest {
         TemplateHelper helper = TemplateHelper.random(Foo.class);
         helper.put("name|1-3", "www");
         // age的值为 [1,3,5]中的任意一个
-        helper.put("age|@one", "[1, 3, 5]");
+        helper.put("age|1", "[1, 3, 5]");
         System.out.println(helper.toTemplate());
-        for (int i = 0; i < 5; i++) {
-            System.out.println(Mock.mock(helper.toTemplate()));
-        }
+        System.out.println(Mock.mock(helper.toTemplate()));
     }
 
     public static void main(String[] args) {
