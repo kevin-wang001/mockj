@@ -7,10 +7,10 @@ import com.kvn.mockj.MockField;
 import java.util.Collection;
 
 /**
- * 对 Object 类型的数据做 mock，mock 的值从 array 中挑选一个。
+ * 对 baseValue为 Collection 类型的数据做 mock，mock 的值从 array 中挑选一个。
  * <pre>
- * 形如：'object|@object': objectArray
- * "foo|@object":[
+ * 形如：'object|@one': array
+ * "foo|@one":[
  *         {
  *             "name":"zhangsan",
  *             "age":12
@@ -27,9 +27,9 @@ import java.util.Collection;
  * </pre>
  * Created by wangzhiyuan on 2018/9/14
  */
-public class ObjectInArrayMockRule extends AbstactMockRule {
+public class OneInArrayMockRule extends AbstactMockRule {
 
-    public ObjectInArrayMockRule(MockField mockField) {
+    public OneInArrayMockRule(MockField mockField) {
         super(mockField);
     }
 
@@ -40,7 +40,7 @@ public class ObjectInArrayMockRule extends AbstactMockRule {
      */
     public static boolean match(MockField mockField) {
         boolean typeMatch = Collection.class == mockField.getBaseValueType();
-        return typeMatch && mockField.getRuleStr() != null && "@object".equals(mockField.getRuleStr().toLowerCase());
+        return typeMatch && mockField.getRuleStr() != null && "@one".equals(mockField.getRuleStr().toLowerCase());
     }
 
 

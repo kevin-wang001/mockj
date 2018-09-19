@@ -25,7 +25,7 @@ mockjs的java实现。同时内置随机 random 一个对象的功能
 * 4 属性值：object  
 "name|min-max": {} 从属性值 {} 中随机选取 min 到 max 个属性  
 "name|count": {} 从属性值 {} 中随机选取 count 个属性。  
-"name|@object": [{},{} ...] 从对象数组[{},{} ...]中随机选中一个
+"name|@one": [{},{} ...] 从对象数组[{},{} ...]中随机选中一个
 
 * 5 属性值：array
 "name|1": [{}, {} ...] 从属性值 [{}, {} ...] 中随机选取 1 个元素，作为最终值  
@@ -35,6 +35,9 @@ mockjs的java实现。同时内置随机 random 一个对象的功能
 * 6 @random的支持  
 支持对 string、number、boolean类型的使用 @random 规则，可以随机产生 mock 数据。  
 "name|@random": "value"  
+
+* 7 @one的支持  
+对于形如："name|@one": [...] 的模板（即：value 类型为数组，rule 值为 @one 的规则），产生的 mock 值为数组中的任意一个值  
 
 * 7 支持扩展函数来产生 mock 数据  
 value 值以 $ 开头，则会路由到 $Function.java 中，调用 $Function.java 中指定的方法。可以自由进行扩展  
@@ -78,7 +81,7 @@ TemplateHelper helper = TemplateHelper.random(Foo.class);
 helper.put("courses|2", new JSONArray(Lists.newArrayList("语文","数学","英语")));
 helper.put("courses2|1-2", new JSONArray(Lists.newArrayList("语文","数学","英语")));
 helper.put("map|2-4", JSONObject.parseObject("{\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}"));
-// ==> ObjectInArrayMockRule
+// ==> OneInArrayMockRule
 helper.put("foo|@object", JSONArray.parseArray("[{\"name\":\"zhangsan\",\"age\":12},{\"name\":\"lisi\",\"age\":10},{\"name\":\"wangwu\",\"age\":8}]"));
 // ==> DefaultMockRule
 helper.put("foo1", JSONArray.parseObject("{\"name\":\"wangwu\",\"age\":8}"));
