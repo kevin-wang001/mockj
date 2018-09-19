@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by wangzhiyuan on 2018/9/18
@@ -98,6 +99,18 @@ public class TemplateHelper {
      * @return
      */
     public TemplateHelper put(String filedName, Object baseValue){
+        // 1. 将 template 中的 fileName 模板剔除
+        AtomicReference<String> delKey = new AtomicReference<>();
+        String originKey = filedName.indexOf("|") > 0 ? filedName.substring(0, filedName.indexOf("|")) : filedName;
+        this.template.keySet().forEach(item -> {
+            if (item.equals(originKey) || item.startsWith(originKey + "|")) {
+                delKey.set(item);
+            }
+        });
+        if (delKey.get() != null) {
+            this.template.remove(delKey.get());
+        }
+        // 将新的 fileName 添加
         this.template.put(filedName, baseValue);
         return this;
     }

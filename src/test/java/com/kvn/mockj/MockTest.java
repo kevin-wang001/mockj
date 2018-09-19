@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import org.junit.Test;
 
 /**
  * Created by wangzhiyuan on 2018/9/17
@@ -30,6 +31,13 @@ public class MockTest {
             System.out.println(JSON.toJSONString(mock));
         }
 
+    }
+
+    @Test
+    public void testTemplatePut(){
+        TemplateHelper helper = TemplateHelper.random(Foo.class);
+        helper.put("name|1-3", "www");
+        System.out.println(helper.toTemplate());
     }
 
     public static void main(String[] args) {
