@@ -1,10 +1,10 @@
 # mockj
 
-#### 项目介绍
+### 项目介绍
 生成mock数据的利器，mockjs的java实现。同时内置随机 random 一个对象的功能
 
 
-#### 使用说明
+### 使用说明
 配置规则:  
 >   属性名|生成规则:属性值  
 
@@ -47,7 +47,7 @@ value 值以 $ 开头，则会路由到 $Function.java 中，调用 $Function.ja
 
 
 
-#### 例子
+### 例子
 [MockTest.java](/src/test/java/com/kvn/mockj/MockTest.java)  
 * **手写模板：** 
 ```java
@@ -173,7 +173,7 @@ Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
     }
 
 
-#### 提供反射接口，随机产生一个对象
+### 提供反射接口，随机产生一个对象
 这种方式支持的数据类型更加丰富。  
 例如：  
 >   
