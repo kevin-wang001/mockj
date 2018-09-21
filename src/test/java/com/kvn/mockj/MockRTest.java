@@ -15,8 +15,7 @@ public class MockRTest {
 
     @Test
     public void random() {
-        TypeReference<Foo> typeReference = new TypeReference<Foo>(){};
-        Foo foo = MockR.random(typeReference);
+        Foo foo = MockR.random(new TypeReference<Foo>(){});
         System.out.println(foo);
         System.out.println(JSON.toJSONString(foo));
     }
