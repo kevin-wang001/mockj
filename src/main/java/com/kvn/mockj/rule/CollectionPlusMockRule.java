@@ -40,16 +40,16 @@ public class CollectionPlusMockRule extends AbstactMockRule {
         JSONArray jsonArray = JSON.parseArray(mockField.getBaseValue());
         // 步长
         Integer step = Integer.valueOf(mockField.getRuleStr());
-        int nextInCache = MockDataContext.getHistory().get(mockField) == null ? step : (int) MockDataContext.getHistory().get(mockField);
-        int next = nextInCache + step;
+        Integer lastIndex = (Integer) MockDataContext.getHistory().get(mockField);
+        int nextIndex = lastIndex == null ? 0 : lastIndex + step;
 
-        // next 已经到最大值，next 从头开始
-        if (next > jsonArray.size()) {
-            next = step;
+        // nextIndex 已经到最大值，next 从头开始
+        if (nextIndex >= jsonArray.size()) {
+            nextIndex = 0;
         }
 
-        MockDataContext.getHistory().put(mockField, next);
-        return jsonArray.get(nextInCache);
+        MockDataContext.getHistory().put(mockField, nextIndex);
+        return jsonArray.get(nextIndex);
     }
 
 }

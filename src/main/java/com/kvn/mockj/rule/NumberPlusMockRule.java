@@ -29,14 +29,13 @@ public class NumberPlusMockRule extends AbstactMockRule implements MockRule {
 
     @Override
     public Object doGenerate() {
-        Integer plus = Integer.valueOf(this.mockField.getRuleStr());
-        Integer lastValue = MockDataContext.getHistory().get(mockField) == null ? null : Integer.valueOf(MockDataContext.getHistory().get(mockField).toString());
-        if (lastValue == null) {
-            lastValue = Integer.valueOf(this.mockField.getBaseValue());
-        }
-        lastValue += plus;
-        MockDataContext.getHistory().put(this.mockField, lastValue);
-        return lastValue;
+        Integer baseValue = Integer.valueOf(this.mockField.getBaseValue());
+        // 步长
+        Integer step = Integer.valueOf(this.mockField.getRuleStr());
+        Integer lastValue = (Integer) MockDataContext.getHistory().get(mockField);
+        int nextValue = lastValue == null ? baseValue : lastValue + step;
+        MockDataContext.getHistory().put(this.mockField, nextValue);
+        return nextValue;
     }
 
 }
