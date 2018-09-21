@@ -200,7 +200,7 @@ Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
     private Foo foo;
     private Foo foo1;
     
-**通过Api：Foo foo = MockR.random(new TypeReference<Foo>(){}); 能产生如下的数据**
+**通过Api：Foo foo = MockR.random(new TypeReference\<Foo\>(){}); 能产生如下的数据**
 >
     {
         "age":-61382,
