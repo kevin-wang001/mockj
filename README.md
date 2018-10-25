@@ -90,6 +90,8 @@ Foo foo = Mock.mock(template, Foo.class);
         "startDate":1537524864573
     }
 
+--------
+
 *  :pencil: **使用随机模板1：**
 ```java
 Foo mock = Mock.mock(TemplateHelper.randomTemplate(Foo.class), Foo.class);
@@ -119,6 +121,8 @@ Foo mock = Mock.mock(TemplateHelper.randomTemplate(Foo.class), Foo.class);
         "point":30984,
         "startDate":"2018-09-21T10:15:57.007Z"
     }
+
+--------
 
 *  :pencil: **使用随机模板2：**  
 随机模板只支持对 string、number、date等数据类型进行mock，所以其他的复杂对象类型的mock，需要手动添加mock模板。mockj提供了相应的api进行操作  
@@ -172,8 +176,9 @@ Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
         "startDate":1537525215494
     }
 
+--------
 
-###  :pencil: 提供反射接口，随机产生一个对象
+*  :pencil: **提供反射接口，随机产生一个对象**  
 这种方式支持的数据类型更加丰富。  
 例如：  
 >   
@@ -200,7 +205,7 @@ Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
     private Foo foo;
     private Foo foo1;
     
- :pencil: **通过Api：Foo foo = MockR.random(new TypeReference\<Foo\>(){}); 能产生如下的数据**
+ :pencil: **通过Api：Foo foo = MockR.random(new TypeReference\<Foo\>(){}); 能产生如下的数据**  
 >
     {
         "age":-61382,
