@@ -27,11 +27,11 @@ public class NumberRangeMockRule extends AbstactMockRule {
 
     @Override
     public Object doGenerate() {
-        String baseValue = this.mockField.getBaseValue();
+        Integer baseValue = (Integer) this.mockField.getBaseValue();
         String[] strs = this.mockField.getRuleStr().split("-");
         if (strs.length == 1) {
             // 生成固定的数字 rule * baseValue
-            return Integer.valueOf(strs[0]) * Integer.valueOf(baseValue);
+            return Integer.valueOf(strs[0]) * baseValue;
         }
         int min = Integer.valueOf(strs[0]);
         int max = Integer.valueOf(strs[1]);

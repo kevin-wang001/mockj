@@ -39,7 +39,7 @@ public class TemplateHelper {
             switch (fieldClassName) {
                 case "java.lang.Boolean":
                 case "boolean":
-                    template.put(fieldName + "|@random", "true");
+                    template.put(fieldName + "|@random", true);
                     continue;
                 case "java.lang.Character":
                 case "char":
@@ -47,7 +47,7 @@ public class TemplateHelper {
                     continue;
                 case "java.lang.Byte":
                 case "byte":
-                    template.put(fieldName + "|0-" + (Byte.MAX_VALUE - 10) , "1");
+                    template.put(fieldName + "|0-" + (Byte.MAX_VALUE - 10) , 1);
                     continue;
                 case "java.lang.Short":
                 case "short":
@@ -59,7 +59,7 @@ public class TemplateHelper {
                 case "float":
                 case "java.lang.Double":
                 case "double":
-                    template.put(fieldName + "|0-" + (Short.MAX_VALUE - 10), "1");
+                    template.put(fieldName + "|0-" + (Short.MAX_VALUE - 10), 1);
                     continue;
             }
 
@@ -69,7 +69,7 @@ public class TemplateHelper {
             }
 
             if (BigDecimal.class == field.getType()) {
-                template.put(fieldName + "|@random", "1");
+                template.put(fieldName + "|@random", 1);
                 continue;
             }
 
@@ -95,7 +95,7 @@ public class TemplateHelper {
     /**
      * 往 template 中添加模板
      * @param filedName 字段名称
-     * @param baseValue 对应 MockField 中的 baseValue。值类型为：String、JSONObject、JSONArray等
+     * @param baseValue 对应 MockField 中的 baseValue。值类型为：string、 number、 boolean、 JsonArray、 JsonObject
      * @return
      */
     public TemplateHelper put(String filedName, Object baseValue){

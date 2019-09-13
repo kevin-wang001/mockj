@@ -35,13 +35,13 @@ public class MockField {
     /**
      * 原始的基础值
      */
-    private String baseValue;
+    private Object baseValue;
     /**
      * 原始的基础值的类型
      */
     private Class baseValueType;
 
-    public static MockField parse(String mockTemplate, String nameRule, String value) {
+    public static MockField parse(String mockTemplate, String nameRule, Object value) {
         MockField mockField = new MockField();
         mockField.mockTemplate = mockTemplate;
         mockField.originName = nameRule;
@@ -55,7 +55,8 @@ public class MockField {
             mockField.ruleStr = arr[1];
         }
         mockField.baseValue = value;
-        mockField.baseValueType = parseMockType(mockField.baseValue);
+        // 可能出现的类型： string、 number、 boolean、 array、 JsonObject
+        mockField.baseValueType = value.getClass();
 
         mockField.mockRule = MockRuleFactory.find(mockField);
         return mockField;

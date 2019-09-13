@@ -29,7 +29,7 @@ public class NumberPlusMockRule extends AbstactMockRule implements MockRule {
 
     @Override
     public Object doGenerate() {
-        Integer baseValue = Integer.valueOf(this.mockField.getBaseValue());
+        Integer baseValue = (Integer) this.mockField.getBaseValue();
         // 步长
         Integer step = Integer.valueOf(this.mockField.getRuleStr());
         Integer lastValue = (Integer) MockDataContext.getHistory().get(mockField);

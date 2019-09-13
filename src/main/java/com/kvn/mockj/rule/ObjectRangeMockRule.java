@@ -45,21 +45,21 @@ public class ObjectRangeMockRule extends AbstactMockRule {
      * @return
      */
     public static boolean match(MockField mockField) {
-        boolean typeMatch = Object.class == mockField.getBaseValueType();
+        boolean typeMatch = JSONObject.class == mockField.getBaseValueType();
         return typeMatch && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
     }
 
 
     @Override
     public Object doGenerate() {
-        String baseValue = this.mockField.getBaseValue();
+        JSONObject baseValue = (JSONObject) this.mockField.getBaseValue();
         String[] strs = this.mockField.getRuleStr().split("-");
         if (strs.length == 1) {
-            return generate(Integer.valueOf(strs[0]), JSON.parseObject(baseValue));
+            return generate(Integer.valueOf(strs[0]), baseValue);
         }
         int min = Integer.valueOf(strs[0]);
         int max = Integer.valueOf(strs[1]);
-        return generate(new Random().nextInt(max - min + 1) + min, JSON.parseObject(baseValue));
+        return generate(new Random().nextInt(max - min + 1) + min, baseValue);
     }
 
     /**

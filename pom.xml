@@ -56,5 +56,18 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Demo Release Repository</name>
+            <url>http://nexus.sf-express.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Demo Snapshot Repository</name>
+            <url>http://nexus.sf-express.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     
 </project>

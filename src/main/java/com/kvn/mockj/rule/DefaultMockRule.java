@@ -25,16 +25,7 @@ public class DefaultMockRule extends AbstactMockRule {
 
     @Override
     public Object doGenerate() {
-        String baseValue = this.mockField.getBaseValue();
-        try {
-            return JSON.parseObject(baseValue);
-        } catch (Exception e) {
-        }
-        try {
-            return JSON.parseArray(baseValue);
-        } catch (Exception e) {
-        }
-        return baseValue;
+        return this.mockField.getBaseValue();
     }
 
 }

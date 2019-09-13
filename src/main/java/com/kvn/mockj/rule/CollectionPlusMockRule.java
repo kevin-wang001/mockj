@@ -37,7 +37,7 @@ public class CollectionPlusMockRule extends AbstactMockRule {
 
     @Override
     public Object doGenerate() {
-        JSONArray jsonArray = JSON.parseArray(mockField.getBaseValue());
+        JSONArray jsonArray = (JSONArray) mockField.getBaseValue();
         // 步长
         Integer step = Integer.valueOf(mockField.getRuleStr());
         Integer lastIndex = (Integer) MockDataContext.getHistory().get(mockField);

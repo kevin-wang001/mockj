@@ -32,7 +32,7 @@ public class SpecialMockRule extends AbstactMockRule {
         String methodName = null;
         String paramStr = null;
 
-        Matcher matcher = pattern.matcher(mockField.getBaseValue());
+        Matcher matcher = pattern.matcher(mockField.getBaseValue().toString());
         boolean found = matcher.find();
         if (!found) {
             throw new RuntimeException(mockField.getBaseValue() + "错误，匹配不到函数名");

@@ -38,15 +38,43 @@ public class MockTest {
         TemplateHelper helper = TemplateHelper.random(Foo.class);
         helper.put("name|1-3", "www");
         // age的值为 [1,3,5]中的任意一个
-        helper.put("age|1", "[1, 3, 5]");
+        helper.put("age|1", JSON.parseArray("[1, 3, 5]"));
         System.out.println(helper.toTemplate());
         System.out.println(Mock.mock(helper.toTemplate()));
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 5; i++) {
-            Foo foo = Mock.mock(Foo.useTemplate(), Foo.class);
-            System.out.println(JSON.toJSONString(foo));
-        }
+        String template = "{\n" +
+                "\"success\": true,\n" +
+                "\"code\": 200,\n" +
+                "\"data\": {\n" +
+                "\"colors|1\": [\n" +
+                "[\"#000000\", \"#FF0000\", \"#FFFF00\"],\n" +
+                "[\"#00FFFF\", \"#FF0000\", \"#C0C0C0\"],\n" +
+                "[\"#000000\", \"#0000FF\", \"#C0C0C0\"]\n" +
+                "],\n" +
+                "\"xAxis|1\": [\n" +
+                "[\"一月\", \"二月\", \"三月\", \"四月\", \"五月\", \"六月\"],\n" +
+                "[\"二月\", \"三月\", \"四月\", \"五月\", \"六月\", \"七月\"],\n" +
+                "[\"三月\", \"四月\", \"五月\", \"六月\", \"七月\", \"八月\"]\n" +
+                "],\n" +
+                "\"legend\": [\"2017\", \"2018\", \"2019\"],\n" +
+                "\"data\": [{\n" +
+                "\"name\": \"2017\",\n" +
+                "\"data\": [\"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\"]\n" +
+                "},\n" +
+                "{\n" +
+                "\"name\": \"2018\",\n" +
+                "\"data\": [\"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\"]\n" +
+                "},\n" +
+                "{\n" +
+                "\"name\": \"2019\",\n" +
+                "\"data\": [\"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\", \"@integer(0, 100)\"]\n" +
+                "}\n" +
+                "]\n" +
+                "}\n" +
+                "}";
+        System.out.println(Mock.mock(template));
+
     }
 }

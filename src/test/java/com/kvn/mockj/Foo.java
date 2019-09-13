@@ -1,5 +1,6 @@
 package com.kvn.mockj;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 import java.util.Date;
@@ -57,6 +58,10 @@ public class Foo {
                 "\"courses2|1-2\": [\"语文\",\"数学\",\"英语\"]," +
                 "\"map|2-4\": {\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}" +
                 "}";
+    }
+
+    public static void main(String[] args) {
+        System.out.println(JSON.parseObject("{\"flag\":\"a\"}", Foo.class));
     }
 
 }

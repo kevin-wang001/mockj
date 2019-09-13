@@ -19,7 +19,7 @@ public class $Function {
         if (StringUtils.isBlank(paramStr)) {
             return new Date().toInstant().toString();
         }
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(paramStr)).toString();
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(paramStr));
     }
 
     public static char $char(String paramStr){

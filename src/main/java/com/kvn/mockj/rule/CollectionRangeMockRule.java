@@ -1,10 +1,7 @@
 package com.kvn.mockj.rule;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.kvn.mockj.MockField;
-
-import java.util.Collection;
 
 /**
  * 为集合（数组）类型的模板生成 mock 数据。
@@ -40,13 +37,13 @@ public class CollectionRangeMockRule extends AbstactMockRule {
      * @return
      */
     public static boolean match(MockField mockField) {
-        return Collection.class == mockField.getBaseValueType() && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
+        return JSONArray.class == mockField.getBaseValueType() && mockField.getRuleStr() != null && isRangePattern(mockField.getRuleStr());
     }
 
 
     @Override
     public Object doGenerate() {
-        JSONArray jsonArray = JSON.parseArray(mockField.getBaseValue());
+        JSONArray jsonArray = (JSONArray) mockField.getBaseValue();
 
         String[] strs = this.mockField.getRuleStr().split("-");
         if (strs.length == 1) {
