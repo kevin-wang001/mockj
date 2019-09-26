@@ -43,6 +43,31 @@ public class MockTest {
         System.out.println(Mock.mock(helper.toTemplate()));
     }
 
+    @Test
+    public void complex(){
+        String template = "{\n" +
+                "  \"array|1-10\": [\n" +
+                "    {\n" +
+                "      \"name|1-5\": [\n" +
+                "\t\t  {\n" +
+                "\t\t\t\"array|+1\": [\n" +
+                "\t\t\t\t\"AAA\",\n" +
+                "\t\t\t\t\"BBB\",\n" +
+                "\t\t\t\t\"CCC\",\n" +
+                "        \"DDD\",\n" +
+                "        \"EEE\",\n" +
+                "        \"FFF\",\n" +
+                "        \"GGG\"\n" +
+                "\t\t\t  ]\n" +
+                "\t\t  }\n" +
+                "\t  ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        System.out.println(Mock.mock(template));
+    }
+
     public static void main(String[] args) {
         String template = "{\n" +
                 "\"success\": true,\n" +

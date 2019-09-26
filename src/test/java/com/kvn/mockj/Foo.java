@@ -1,6 +1,7 @@
 package com.kvn.mockj;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 import java.util.Date;
@@ -61,7 +62,22 @@ public class Foo {
     }
 
     public static void main(String[] args) {
-        System.out.println(JSON.parseObject("{\"flag\":\"a\"}", Foo.class));
+        JSONObject jsonObject = JSON.parseObject("{\n" +
+                "  \"array|1-10\": [\n" +
+                "    {\n" +
+                "      \"name|1-5\": [\n" +
+                "\t\t  {\n" +
+                "\t\t\t\"array|+1\": [\n" +
+                "\t\t\t\t\"AMD\",\n" +
+                "\t\t\t\t\"CMD\",\n" +
+                "\t\t\t\t\"UMD\"\n" +
+                "\t\t\t  ]\n" +
+                "\t\t  }\n" +
+                "\t  ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}");
+        System.out.println(jsonObject.size());
     }
 
 }
