@@ -14,7 +14,7 @@ public class MockTest {
     /**
      * 测试 randomTemplate
      */
-    @org.junit.Test
+    @Test
     public void mockByRandom() {
         TemplateHelper helper = TemplateHelper.random(Foo.class);
         helper.put("courses|2", new JSONArray(Lists.newArrayList("语文", "数学", "英语")));
@@ -27,8 +27,9 @@ public class MockTest {
         System.out.println(helper);
 
         for (int i = 0; i < 5; i++) {
-            Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
-            System.out.println(JSON.toJSONString(mock));
+//            Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
+//            System.out.println(JSON.toJSONString(mock));
+            System.out.println(Mock.mock(helper.toTemplate()));
         }
 
     }

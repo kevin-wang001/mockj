@@ -1,8 +1,8 @@
-package com.kvn.mockj.v2.handler;
+package com.kvn.mockj.handler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.kvn.mockj.v2.Handler;
-import com.kvn.mockj.v2.Options;
+import com.kvn.mockj.Handler;
+import com.kvn.mockj.Options;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
  * Created by wangzhiyuan on 2019/9/26
  */
 public class ObjectHandler implements TypeHandler {
-    @Override
-    public boolean apply(Class clazz) {
-        return false;
-    }
 
+    @Override
+    public Class[] support() {
+        return new Class[]{JSONObject.class};
+    }
 
     @Override
     public Object handle(Options options) {
@@ -33,17 +33,19 @@ public class ObjectHandler implements TypeHandler {
                 String parsedKey = parseName(key);
                 jo.put(parsedKey, Handler.gen(template.get(key), key, options.getContext()));
             }
-        } else {
-            // 'obj': {}
-            JSONObject template = (JSONObject) options.getTemplate();
-            Iterator<String> it = template.keySet().iterator();
-            while (it.hasNext()) {
-                String key = it.next();
-                String parsedKey = parseName(key);
-                jo.put(parsedKey, Handler.gen(template.get(key), key, options.getContext()));
-            }
+
+            return jo;
         }
 
+
+        // 'obj': {}
+        JSONObject template = (JSONObject) options.getTemplate();
+        Iterator<String> it = template.keySet().iterator();
+        while (it.hasNext()) {
+            String key = it.next();
+            String parsedKey = parseName(key);
+            jo.put(parsedKey, Handler.gen(template.get(key), key, options.getContext()));
+        }
 
         return jo;
     }

@@ -1,6 +1,6 @@
-package com.kvn.mockj.v2;
+package com.kvn.mockj;
 
-import com.kvn.mockj.v2.handler.TypeHandlerFactory;
+import com.kvn.mockj.handler.TypeHandlerFactory;
 
 /**
  * Created by wangzhiyuan on 2019/9/25

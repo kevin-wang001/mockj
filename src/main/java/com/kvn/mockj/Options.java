@@ -1,4 +1,4 @@
-package com.kvn.mockj.v2;
+package com.kvn.mockj;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
