@@ -1,49 +1,115 @@
 # mockj
 
 ### 项目介绍
-生成mock数据的利器，mockjs的java实现。同时内置随机 random 一个对象的功能
+生成mock数据的利器，[mockjs](http://mockjs.com/examples.html) 的 java 实现。同时内置随机 random 一个对象的功能。
+
 
 
 ### 使用说明
-配置规则:  
->   属性名|生成规则:属性值  
+数据模板中的每个属性由 3 部分构成：属性名、生成规则、属性值：
+>   属性名|生成规则:属性值 
 
-* 1 属性值： string  
-"name|min-max"："value"  通过重复 "value" 生成一个字符串，重复次数大于等于 min，小于等于 max。  
-"name|count": "value" 通过重复 "value" 生成一个字符串，重复次数等于 count  
+>   'name|rule': value  
 
-* 2 属性值：number  
+// 属性名   name  
+// 生成规则 rule  
+// 属性值   value  
+
+注意：  
+属性名 和 生成规则 之间用竖线 | 分隔。  
+生成规则 是可选的。 
+ 
+生成规则 有 7 种格式：  
+```text
+'name|min-max': value
+'name|count': value
+'name|min-max.dmin-dmax': value
+'name|min-max.dcount': value
+'name|count.dmin-dmax': value
+'name|count.dcount': value
+'name|+step': value
+```
+
+生成规则 的 含义 需要依赖 属性值的类型 才能确定。  
+属性值 中可以含有 @占位符。  
+属性值 还指定了最终值的初始值和类型。  
+
+
+### 生成规则和示例
+
+#### 1 属性值是字符串 String
+* 'name|min-max': string  
+
+通过重复 string 生成一个字符串，重复次数大于等于 min，小于等于 max。
+
+* 'name|count': string
+
+通过重复 string 生成一个字符串，重复次数等于 count。
+
+#### 2 属性值是数字 Number
+* 'name|+1': number
+
+属性值自动加 1，初始值为 number。
+
+* 'name|min-max': number
+
+生成一个大于等于 min、小于等于 max 的整数，属性值 number 只是用来确定类型。
+
+* 'name|min-max.dmin-dmax': number
+
+生成一个浮点数，整数部分大于等于 min、小于等于 max，小数部分保留 dmin 到 dmax 位。
+
+Mock.mock("{
+    \"number1|1-100.1-10\": 1,
+    \"number2|123.1-10\": 1,
+    \"number3|123.3\": 1,
+    \"number4|123.10\": 1.123
+}")
+// =>
+{
+    "number1": 12.92,
+    "number2": 123.51,
+    "number3": 123.777,
+    "number4": 123.1231091814
+}
+
 "name|+1": 100 属性值自动加 1，初始值为 100  
 "name|-1": 100 属性值自动减 1，初始值为 100  
 "name|1-100": 100 生成一个大于等于 1、小于等于 100 的整数，属性值 100 只用来确定类型  
-"name|1-100.1-10": 100 生成一个浮点数，整数部分大于等于 1、小于等于 100，小数部分保留 1 到 10 位  
+"name|1-100.1-10": 100 生成一个浮点数，整数部分大于等于 1、小于等于 100，小数部分保留 1 到 10 位 
 
-* 3 属性值：boolean  
-"name|1": value  生成一个固定的布尔值，值为 value  
-"name|@random": value   随机生成一个布尔值  
 
-* 4 属性值：object  
-"name|min-max": {...} 从属性值 {...} 中随机选取 min 到 max 个属性  
-"name|count": {...} 从属性值 {...} 中随机选取 count 个属性。  
+#### 3 属性值是布尔型 Boolean
+* 'name|1': boolean
 
-* 5 属性值：array
-"name|1": [{}, {} ...] 从属性值 [{}, {} ...] 中随机选取 1 个元素，作为最终值。且最终返回的数据类型与元素保持一致  
-"name|min-max": [{}, {} ...] 从数组 [{}, {} ...] 中挑选 x 个值生成一个新数组返回，x 的值介于 min 与 max 之间  
-"name|count": [{}, {} ...] 从数组 [{}, {} ...] 中挑选 count 个值生成一个新数组返回  
+随机生成一个布尔值，值为 true 的概率是 1/2，值为 false 的概率同样是 1/2。
 
-* 6 @random的支持  
-支持对 string、number、boolean类型的使用 @random 规则，可以随机产生 mock 数据。  
-"name|@random": "value"  
 
-* 7 支持扩展函数来产生 mock 数据  
-value 值以 $ 开头，则会路由到 $Function.java 中，调用 $Function.java 中指定的方法。可以自由进行扩展  
-例如：  
->
-    "flag": "$char"
-    "startDate": "$date"
+#### 4 属性值是对象 Object
+* 'name|count': object
 
-* 8 对随机模板的支持  
-手写模板通常工作量比较大，如果没有特殊要求，可以通过 TemplateHelper.java 来辅助生成随机模板  
+从属性值 object 中随机选取 count 个属性。
+
+* 'name|min-max': object
+
+从属性值 object 中随机选取 min 到 max 个属性。
+
+#### 5 属性值是数组 Array
+* 'name|1': array
+
+从属性值 array 中随机选取 1 个元素，作为最终值。
+
+* 'name|+1': array
+
+从属性值 array 中顺序选取 1 个元素，作为最终值。
+
+* 'name|min-max': array
+
+通过重复属性值 array 生成一个新数组，重复次数大于等于 min，小于等于 max。
+
+* 'name|count': array
+
+通过重复属性值 array 生成一个新数组，重复次数为 count。
 
 
 
@@ -53,13 +119,13 @@ value 值以 $ 开头，则会路由到 $Function.java 中，调用 $Function.ja
 ```java
 String template = "{" +
                   "\"name|1-10\": \"★\"," +
-                  "\"flag\": \"$char\"," +
+                  "\"flag\": \"@character\"," +
                   "\"age|1-100\": 100," +
                   "\"next|+1\": 100," +
                   "\"point|1-100.1-2\": 100," +
-                  "\"boy|@random\": true," +
-                  "\"startDate\": \"$date\"," +
-                  "\"endDate\": \"$date(yyyy-MM-dd)\"," +
+                  "\"boy|1\": true," +
+                  "\"startDate\": \"@date\"," +
+                  "\"endDate\": \"@date(yyyy-MM-dd)\"," +
                   "\"courses|2\": [\"语文\",\"数学\",\"英语\"]," +
                   "\"courses2|1-2\": [\"语文\",\"数学\",\"英语\"]," +
                   "\"map|2-4\": {\"110000\": \"北京市\",\"120000\": \"天津市\",\"130000\": \"河北省\",\"140000\": \"山西省\"}" +
@@ -98,11 +164,11 @@ Foo mock = Mock.mock(TemplateHelper.randomTemplate(Foo.class), Foo.class);
 >
     {
         "age|0-32757":"1",
-        "flag":"$char",
-        "boy|@random":"true",
+        "flag":"@character",
+        "boy|1":"true",
         "point|0-32757":"1",
         "endDate":"$date",
-        "name|@random":"xx",
+        "name":"xx",
         "next|0-32757":"1",
         "startDate":"$date"
     }
@@ -260,6 +326,3 @@ Foo mock = Mock.mock(helper.toTemplate(), Foo.class);
         "startDate":1537524456497
     }
     
-
-#### TODO
-1. baseValue为正则的支持  
