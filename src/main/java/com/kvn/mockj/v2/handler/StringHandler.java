@@ -18,8 +18,22 @@ public class StringHandler implements TypeHandler {
 
     @Override
     public Object handle(Options options) {
-        JSONObject jo = new JSONObject();
-        jo.put(options.getParsedName(), "★");
-        return jo;
+        String sR = "";
+
+        //  'foo': '★'
+        if (options.getRule().getCount() == null) {
+            return options.getTemplate();
+        }
+
+        // 'star|1-5': '★',
+        for (int i = 0; i < options.getRule().getCount(); i++) {
+            sR += options.getTemplate();
+        }
+
+        // 'email|1-10': '@EMAIL, ',
+        // TODO 占位符的实现
+
+
+        return sR;
     }
 }

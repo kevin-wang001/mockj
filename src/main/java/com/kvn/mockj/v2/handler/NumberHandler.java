@@ -18,8 +18,6 @@ public class NumberHandler implements TypeHandler {
 
     @Override
     public Object handle(Options options) {
-        JSONObject jo = new JSONObject();
-        jo.put(options.getParsedName(), 2);
-        return jo;
+        return 2;
     }
 }

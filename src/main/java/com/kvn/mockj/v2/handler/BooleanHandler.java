@@ -18,8 +18,6 @@ public class BooleanHandler implements TypeHandler {
 
     @Override
     public Object handle(Options options) {
-        JSONObject jo = new JSONObject();
-        jo.put(options.getParsedName(), true);
-        return jo;
+        return true;
     }
 }
