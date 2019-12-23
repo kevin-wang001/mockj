@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Created by wangzhiyuan on 2019/9/27
  */
 public class PlaceholderHandler {
-    private static final Pattern pattern = Pattern.compile("(@\\w+)(\\(.*\\))?");
+    private static final Pattern pattern = Pattern.compile("(@\\w+)(\\(.*?\\))?");
 
     public static Object doGenerate(Options options) {
 

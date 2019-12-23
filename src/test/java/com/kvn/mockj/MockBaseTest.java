@@ -1,13 +1,11 @@
 package com.kvn.mockj;
 
-import com.kvn.mockj.Context;
-import com.kvn.mockj.Mock;
 import org.junit.Test;
 
 /**
  * Created by wangzhiyuan on 2019/9/26
  */
-public class Mock2Test {
+public class MockBaseTest {
 
     @Test
     public void stringTest() {

@@ -69,7 +69,12 @@ public class MockTest {
         System.out.println(Mock.mock(template));
     }
 
-    public static void main(String[] args) {
+
+    /**
+     * 复杂模板测试
+     */
+    @Test
+    public void complex2(){
         String template = "{\n" +
                 "\"success\": true,\n" +
                 "\"code\": 200,\n" +
@@ -101,6 +106,28 @@ public class MockTest {
                 "}\n" +
                 "}";
         System.out.println(Mock.mock(template));
+    }
 
+    /**
+     * 生成电话号码
+     */
+    @Test
+    public void generateTel(){
+        String tel = "{\"tel\":\"137@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)\"}";
+        System.out.println(Mock.mock(tel));
+    }
+
+    /**
+     * 使用单一规则来生成 mock 数据
+     */
+    @Test
+    public void singleRuleUse(){
+        String tel = "137@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)";
+        System.out.println(Handler.gen(tel, null, null));
+    }
+
+    public static void main(String[] args) {
+        String tel = "137@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)@integer(0, 9)";
+        System.out.println(Handler.gen(tel, null, null));
     }
 }
