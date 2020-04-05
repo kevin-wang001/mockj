@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kvn.mockj</groupId>
+    <groupId>com.github.mockj</groupId>
     <artifactId>mockj</artifactId>
     <version>1.0</version>
 
@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.9</version>
+            <version>1.2.68</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -55,19 +55,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Demo Release Repository</name>
-            <url>http://nexus.sf-express.com/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Demo Snapshot Repository</name>
-            <url>http://nexus.sf-express.com/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     
 </project>
