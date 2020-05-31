@@ -3,7 +3,14 @@
 ### 项目介绍
 生成mock数据的利器，[mockjs](http://mockjs.com/examples.html) 的 java 实现。同时内置随机 random 一个对象的功能。
 
-
+### maven 依赖  
+```xml
+<dependency>
+  <groupId>com.github.kevin-wang001</groupId>
+  <artifactId>mockj</artifactId>
+  <version>1.0</version>
+</dependency>
+```
 
 ### 使用说明
 数据模板中的每个属性由 3 部分构成：属性名、生成规则、属性值：
